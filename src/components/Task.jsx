@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { View, Text } from "react-native";
 import { Paragraph } from "react-native-paper";
-import { db, collection, getDocs } from "./config/firebase";
+import { db } from "../config/firebase";
+// import { db, collection, getDocs } from "./config/firebase";
 
 export default function Task() {
   const [tasks, setTasks] = useState([]);
@@ -9,7 +11,7 @@ export default function Task() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "tasks"));
+        const querySnapshot = await getDocs(collection(db, "task"));
         const taskData = querySnapshot.docs.map((doc) => doc.data());
         setTasks(taskData);
       } catch (error) {

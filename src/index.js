@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "react-native-vector-icons";
 import Home from "./screens/Home";
 import AddTask from "./screens/AddTask";
 import EditTask from "./screens/EditTask";
+import Task from "./components/Task";
 
 
 
@@ -25,6 +26,14 @@ export default function RootNavigation() {
                         <MaterialCommunityIcons name="home" color={color} size={26} />
                     ),
                 }} />
+                <Stack.Screen 
+                name="Tarefas" 
+                component={Task} 
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="view-list" color={color} size={26} />
+                    ),
+                }}/>
                 <Stack.Screen 
                 name="Adição" 
                 component={AddTask} 

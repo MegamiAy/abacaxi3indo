@@ -10,11 +10,11 @@ export default function Home() {
 
         return (
             <View>
-                <Task />
+                <Task/>
                 <Button
                     icon={() => <Icon name="rocket" size={30} color="#000" />}
                     mode="contained"
-                    onPress={() => console.log("Button pressed")}
+                    onPress={() => console.log("Button pressed")} 
                 >
                     ME APERTE
                 </Button>
