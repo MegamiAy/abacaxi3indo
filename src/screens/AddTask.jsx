@@ -2,6 +2,7 @@ import { Button, Paragraph, TextInput } from "react-native-paper";
 import { Text, View } from "react-native";
 import { useState } from "react";
 import { db } from "../config/firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 
 export default function AddTask() {
@@ -10,7 +11,7 @@ export default function AddTask() {
 
     const handleAddTask = async () => {
         try {
-            const taskRef = await db.collection("tasks").add({
+            const taskRef = await addDoc(collection(db, "tasks"), {
                 name: taskName,
                 description: taskDescription,
             });
