@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { useState } from "react";
 import { db } from "../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
-
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function AddTask() {
     const [taskName, setTaskName] = useState("");
@@ -39,7 +39,7 @@ export default function AddTask() {
                 onChangeText={text => setTaskDescription(text)}
             />
             <Button
-                
+                icon={() => <Icon name="plus" size={15} color="#000" />}
                 mode="contained"
                 onPress={handleAddTask}
             >
