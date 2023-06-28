@@ -1,31 +1,27 @@
-import { addDoc, collection } from "firebase/firestore";
+import { Button, Paragraph, TextInput } from "react-native-paper";
+import { Text, View } from "react-native";
 import { useState } from "react";
-import { View } from "react-native";
-import { Button, Paragraph, Text, TextInput } from "react-native-paper";
 import { db } from "../config/firebase";
-import Icon from "react-native-vector-icons/FontAwesome";
-
+import { addDoc, collection } from "firebase/firestore";
 
 
 export default function AddTask() {
     const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
 
-    async function handleAddTask() {
+    const handleAddTask = async () => {
         try {
-            const taskRef = collection(db, "tasks");
-            const payload = {
+            const taskRef = await addDoc(collection(db, "tasks"), {
                 name: taskName,
                 description: taskDescription,
-            };
-            const taski = await addDoc(taskRef, payload);
-            console.log(taski);
+            });
+            console.log("Task added with ID:", taskRef.id);
+            setTaskName("");
+            setTaskDescription("");
         } catch (error) {
-            console.log(error);
+            console.error("Error adding task:", error);
         }
-    }
-
-
+    };
 
     return (
         <View>
@@ -34,17 +30,22 @@ export default function AddTask() {
             <TextInput
                 placeholder="Insira o Nome"
                 value={taskName}
-                onChangeText={setTaskName} />
+                onChangeText={text => setTaskName(text)}
+            />
             <Paragraph>Descrição</Paragraph>
             <TextInput
                 placeholder="Insira a Descrição"
                 value={taskDescription}
-                onChangeText={setTaskDescription}
+                onChangeText={text => setTaskDescription(text)}
             />
             <Button
-                icon={() => <Icon name="plus" size={30} color="#000" />}
+                
                 mode="contained"
-                onPress={handleAddTask}>ADICIONAR</Button>
+                onPress={handleAddTask}
+            >
+                ADICIONAR
+            </Button>
+
         </View>
-    );
+    )
 }
