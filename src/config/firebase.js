@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCMFtnVd49kiuC66WWfDQcgP_G9wtz2imU",
-  authDomain: "claire-1bba9.firebaseapp.com",
-  projectId: "claire-1bba9",
-  storageBucket: "claire-1bba9.appspot.com",
-  messagingSenderId: "174879856976",
-  appId: "1:174879856976:web:ef503fdabc53d45f3f7455",
-  measurementId: "G-B7M12MN017"
+  apiKey: "AIzaSyBaSPROLqEzeH7dpWDBWG0xW0rwSD3tLdE",
+  authDomain: "abacaxi-7329b.firebaseapp.com",
+  projectId: "abacaxi-7329b",
+  storageBucket: "abacaxi-7329b.appspot.com",
+  messagingSenderId: "428140994291",
+  appId: "1:428140994291:web:1bb5d31470c5ebd5562186",
+  measurementId: "G-KD0QNPYHX6"
 };
 
 const app = initializeApp(firebaseConfig);

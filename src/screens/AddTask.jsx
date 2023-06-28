@@ -1,8 +1,7 @@
 import { Button, Paragraph, TextInput } from "react-native-paper";
 import { Text, View } from "react-native";
-import db from "react-native-vector-icons/FontAwesome";
 import { useState } from "react";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { db } from "../config/firebase";
 
 
 export default function AddTask() {
@@ -39,7 +38,7 @@ export default function AddTask() {
                 onChangeText={text => setTaskDescription(text)}
             />
             <Button
-                icon={() => <Icon name="plus" size={30} color="#000" />}
+                
                 mode="contained"
                 onPress={handleAddTask}
             >
