@@ -1,22 +1,21 @@
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import { Paragraph } from "react-native-paper";
+import React, { useEffect, useState } from "react";
+import { View } from "react-native";
+import { Card, Text } from "react-native-paper";
 import { db } from "../config/firebase";
-// import { db, collection, getDocs } from "./config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-export default function Task() {
+export default function Testeteste() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const fetchTasks = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "task"));
-        const taskData = querySnapshot.docs.map((doc) => doc.data());
-        setTasks(taskData);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
-      }
+      const querySnapshot = await getDocs(collection(db, "tasks"));
+      const taskList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        description: doc.data().description,
+      }));
+      setTasks(taskList);
     };
 
     fetchTasks();
@@ -24,10 +23,10 @@ export default function Task() {
 
   return (
     <View>
-      {tasks.map((task, index) => (
-        <View key={index}>
-          <Text>Título: {task.name}</Text>
-          <Paragraph>Descrição: {task.description}</Paragraph>
+      {tasks.map((task) => (
+        <View key={task.id}>
+          <Text>Titulo: {task.name}</Text>
+          <Text>Descrição: {task.description}</Text>
         </View>
       ))}
     </View>
