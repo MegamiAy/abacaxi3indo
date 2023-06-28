@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
-import { Card, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
 import { db } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import Header from "./Header";
 
 export default function Testeteste() {
   const [tasks, setTasks] = useState([]);
@@ -23,6 +24,7 @@ export default function Testeteste() {
 
   return (
     <View>
+        <Header title="Tarefas"/>
       {tasks.map((task) => (
         <View key={task.id}>
           <Text>Titulo: {task.name}</Text>
