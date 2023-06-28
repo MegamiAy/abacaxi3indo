@@ -14,9 +14,9 @@ export default function RootNavigation() {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                activeColor="red"
+                activeColor="#fff"
                 shifting={true}
-                barStyle={{ backgroundColor: "#000" }}
+                barStyle={{ backgroundColor: "#0D0D0D" }}
             >
                 <Stack.Screen 
                 name="Home" 

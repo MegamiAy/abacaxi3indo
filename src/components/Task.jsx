@@ -4,6 +4,7 @@ import { Text } from "react-native-paper";
 import { db } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Header from "./Header";
+import { Styles } from "../utils/Styles";
 
 export default function Testeteste() {
   const [tasks, setTasks] = useState([]);
@@ -23,7 +24,7 @@ export default function Testeteste() {
   }, []);
 
   return (
-    <View>
+    <View style={Styles.body}>
         <Header title="Tarefas"/>
       {tasks.map((task) => (
         <View key={task.id}>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { db } from "../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { Styles } from "../utils/Styles";
 
 export default function AddTask() {
     const [taskName, setTaskName] = useState("");
@@ -24,7 +25,7 @@ export default function AddTask() {
     };
 
     return (
-        <View>
+        <View style={Styles.body}>
             <Text>Adicionar Tarefa</Text>
             <Paragraph>Nome/Título</Paragraph>
             <TextInput
