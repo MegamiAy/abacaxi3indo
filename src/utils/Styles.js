@@ -5,4 +5,9 @@ export const Styles = StyleSheet.create({
       flex: 1,
       backgroundColor: "#1C2128",
     },
+
+    head: {
+        fontSize: 20,
+        color: #fff,
+    },
   });
