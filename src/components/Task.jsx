@@ -24,12 +24,16 @@ export default function Testeteste() {
   }, []);
 
   return (
-    <View style={Styles.body}>
+    <View style={Styles.container}>
         <Header title="Tarefas"/>
       {tasks.map((task) => (
-        <View key={task.id}>
-          <Text>Titulo: {task.name}</Text>
-          <Text>Descrição: {task.description}</Text>
+        <View key={task.id} style={Styles.container}>
+          <View style ={Styles.taskheader}>
+            <Text style={Styles.titlesmall}>Titulo: {task.name}</Text>
+          </View>
+          <View style={Styles.taskbody}>
+            <Text>Descrição: {task.description}</Text>
+          </View>
         </View>
       ))}
     </View>
