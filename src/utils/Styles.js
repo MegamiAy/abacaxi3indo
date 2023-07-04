@@ -92,4 +92,5 @@ export const Styles = StyleSheet.create({
       alignSelf: "center",
       marginTop: 10,
     }
+
   });

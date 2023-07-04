@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 import { db } from "../config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc } from "firebase/firestore";
 import Header from "./Header";
 import { Styles } from "../utils/Styles";
 
@@ -22,6 +22,15 @@ export default function Testeteste() {
 
     fetchTasks();
   }, []);
+
+  const deleteTask = async (taskId) => {
+    try {
+      await deleteDoc(collection(db, "tasks", taskId));
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    } catch (error) {
+      console.log("Error deleting task:", error);
+    }
+  };
 
   return (
     <View style={Styles.body}>
