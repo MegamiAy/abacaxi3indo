@@ -35,10 +35,10 @@ export const Styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "#323138",
-      height: "30%",
+      height: "50%",
       width: "100%",
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
+      borderTopLeftRadius: 5,
+      borderTopRightRadius: 5,
     },
 
     taskbody: {
@@ -47,8 +47,18 @@ export const Styles = StyleSheet.create({
       backgroundColor: "#828282",
       height: "50%",
       width: "100%",
-      borderBottomLeftRadius: 20,
-      borderBottomRightRadius: 20,
-      padding: 10,
+      borderBottomLeftRadius: 5,
+      borderBottomRightRadius: 5,
+      padding: 20,
+    },
+
+    del: {
+      color: "#fff",
+      fontSize: 12,
+      padding: 5,
+      margin: 2,
+      backgroundColor: "#8B0000",
+      borderRadius: 5,
     }
+
   });
