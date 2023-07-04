@@ -5,6 +5,7 @@ import { db } from "../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Styles } from "../utils/Styles";
+import Header from "../components/Header";
 
 export default function AddTask() {
     const [taskName, setTaskName] = useState("");
@@ -26,23 +27,26 @@ export default function AddTask() {
 
     return (
         <View style={Styles.body}>
-            <Text>Adicionar Tarefa</Text>
-            <Paragraph>Nome/Título</Paragraph>
+            <Header title="Adicionar tarefa" />
+            <Paragraph style={Styles.inputtitle}>Nome/Título</Paragraph>
             <TextInput
                 placeholder="Insira o Nome"
                 value={taskName}
                 onChangeText={text => setTaskName(text)}
+                style={Styles.textinput}
             />
-            <Paragraph>Descrição</Paragraph>
+            <Paragraph style={Styles.inputtitle}>Descrição</Paragraph>
             <TextInput
                 placeholder="Insira a Descrição"
                 value={taskDescription}
                 onChangeText={text => setTaskDescription(text)}
+                style={Styles.textinput}
             />
             <Button
-                icon={() => <Icon name="plus" size={15} color="#000" />}
+                icon={() => <Icon name="plus" size={15} color="#fff" />}
                 mode="contained"
                 onPress={handleAddTask}
+                style={Styles.button}
             >
                 ADICIONAR
             </Button>

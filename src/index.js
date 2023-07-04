@@ -27,14 +27,6 @@ export default function RootNavigation() {
                     ),
                 }} />
                 <Stack.Screen 
-                name="Tarefas" 
-                component={Task} 
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="view-list" color={color} size={26} />
-                    ),
-                }}/>
-                <Stack.Screen 
                 name="Adição" 
                 component={AddTask} 
                 options={{
