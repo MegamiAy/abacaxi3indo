@@ -8,7 +8,7 @@ import Task from "../components/Task";
 export default function Home() {
   return (
     <View style={Styles.body}>
-      <Task />
-    </View>
+        <Task />
+      </View>
   );
 }
