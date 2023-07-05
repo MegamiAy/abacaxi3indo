@@ -44,6 +44,8 @@ export const Styles = StyleSheet.create({
       margin: 10,
       backgroundColor: "#8B0000",
       borderRadius: 5,
+      shadowOffset: { width: 3, height: 3 },
+      shadowRadius: 10,
     },
 
     taskheader: {
