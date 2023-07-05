@@ -1,56 +1,59 @@
-import { Button, Paragraph, TextInput } from "react-native-paper";
-import { Text, View } from "react-native";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {  TextInput, View } from "react-native";
+import { Button,} from "react-native-paper"
 import { db } from "../config/firebase";
-import { addDoc, collection } from "firebase/firestore";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { Styles } from "../utils/Styles";
-import Header from "../components/Header";
+import { doc, setDoc } from "firebase/firestore";
 
-export default function EditTask() {
-    const [taskName, setTaskName] = useState("");
-    const [taskDescription, setTaskDescription] = useState("");
+const EditTask = ({ navigation, route }) => {
+  const { taskId } = route.params;
+  const [name, setName] = useState("");
+  const [description, setDesc] = useState("");
 
-    const handleAddTask = async () => {
-        try {
-            const taskRef = await setDoc(collection(db, "tasks"), {
-                name: taskName,
-                description: taskDescription,
-            });
-            console.log("Task added with ID:", taskRef.id);
-            setTaskName("");
-            setTaskDescription("");
-        } catch (error) {
-            console.error("Error adding task:", error);
-        }
+  useEffect(() => {
+    const fetchTask = async () => {
+      const taskRef = doc(db, "tasks", taskId);
+      const taskSnapshot = await taskRef.get();
+
+      if (taskSnapshot.exists()) {
+        const taskData = taskSnapshot.data();
+        setName(taskData.name);
+        setDesc(taskData.description);
+      } else {
+      }
     };
 
-    return (
-        <View style={Styles.body}>
-            <Header title="Editar tarefa" />
-            <Paragraph style={Styles.inputtitle}>Nome/Título</Paragraph>
-            <TextInput
-                placeholder="Insira a mudança"
-                value={taskName}
-                onChangeText={text => setTaskName(text)}
-                style={Styles.textinput}
-            />
-            <Paragraph style={Styles.inputtitle}>Descrição</Paragraph>
-            <TextInput
-                placeholder="Insira a mudança"
-                value={taskDescription}
-                onChangeText={text => setTaskDescription(text)}
-                style={Styles.textinput}
-            />
-            <Button
-                icon={() => <Icon name="pencil" size={15} color="#fff" />}
-                mode="contained"
-                onPress={handleAddTask}
-                style={Styles.button}
-            >
-                ADICIONAR
-            </Button>
+    fetchTask();
+  }, []);
 
-        </View>
-    )
-}
+  const handleSave = async () => {
+    const taskRef = doc(db, "Tasks", taskId);
+    await setDoc(taskRef, {
+      name: name,
+      description: description,
+    });
+  };
+
+  return (
+    <View>
+      <TextInput
+        value={name}
+        onChangeText={setName}
+        placeholder="Título da Tarefa"
+      />
+      <TextInput
+        value={description}
+        onChangeText={setDesc}
+        placeholder="Conteúdo da Tarefa"
+        multiline
+      />
+      <Button
+      mode="contained" 
+      onPress={handleSave} 
+      buttonColor="#8A02F2"
+      textColor="#fff"
+      > Salvar </Button>
+    </View>
+  );
+};
+
+export default EditTask;
