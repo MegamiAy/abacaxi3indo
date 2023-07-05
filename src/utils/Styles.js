@@ -37,6 +37,15 @@ export const Styles = StyleSheet.create({
       color: "#e3e3e3",
     },
 
+    del: {
+      color: "#fff",
+      fontSize: 12,
+      padding: 5,
+      margin: 10,
+      backgroundColor: "#8B0000",
+      borderRadius: 5,
+    },
+
     taskheader: {
       justifyContent: "center",
       alignItems: "center",
