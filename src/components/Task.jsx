@@ -11,13 +11,17 @@ export default function TaskP({ navigation }) {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const querySnapshot = await getDocs(collection(db, "tasks"));
-      const taskList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        name: doc.data().name,
-        description: doc.data().description,
-      }));
-      setTasks(taskList);
+      try {
+        const querySnapshot = await getDocs(collection(db, "tasks"));
+        const taskList = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+          description: doc.data().description,
+        }));
+        setTasks(taskList);
+      } catch (error) {
+        console.log("Error fetching tasks:", error);
+      }
     };
 
     fetchTasks();
@@ -32,29 +36,27 @@ export default function TaskP({ navigation }) {
     }
   };
 
+  const navigateToEditTask = (taskId) => {
+    navigation.navigate("EditTask", { taskId });
+  };
+
   return (
     <View style={Styles.body}>
       <Header title="Tarefas" />
       {tasks.map((task) => (
         <View key={task.id} style={Styles.container}>
           <View style={Styles.taskheader}>
-            <Text style={Styles.titlesmall}>Titulo: {task.name}</Text>
+            <Text style={Styles.titlesmall}>Título: {task.name}</Text>
           </View>
           <View style={Styles.taskbody}>
             <Text>Descrição: {task.description}</Text>
           </View>
-          <TouchableOpacity onPress={() => {
-            navigation.navigate("EditTask", { taskId: task.id });
-          }}
-            style={Styles.del}
-          >
+          <TouchableOpacity onPress={() => navigateToEditTask(task.id)} style={Styles.del}>
             <Text>Editar</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => deleteTask(task.id)}
-              style={Styles.del}
-            >
-              <Text>Delete</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => deleteTask(task.id)} style={Styles.del}>
+            <Text>Excluir</Text>
+          </TouchableOpacity>
         </View>
       ))}
     </View>

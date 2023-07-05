@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {  TextInput, View } from "react-native";
-import { Button,} from "react-native-paper"
+import { TextInput, View } from "react-native";
+import { Button } from "react-native-paper";
 import { db } from "../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
-export default function EditTask ({ navigation, route }){
+export default function EditTask({ navigation, route }) {
   const { taskId } = route.params;
   const [name, setName] = useState("");
   const [description, setDesc] = useState("");
@@ -12,21 +12,22 @@ export default function EditTask ({ navigation, route }){
   useEffect(() => {
     const fetchTask = async () => {
       const taskRef = doc(db, "tasks", taskId);
-      const taskSnapshot = await taskRef.get;
+      const taskSnapshot = await taskRef.get();
 
       if (taskSnapshot.exists()) {
         const taskData = taskSnapshot.data();
         setName(taskData.name);
         setDesc(taskData.description);
       } else {
+        console.log("Task does not exist");
       }
     };
 
     fetchTask();
-  }, []);
+  }, [taskId]);
 
   const handleSave = async () => {
-    const taskRef = doc(db, "Tasks", taskId);
+    const taskRef = doc(db, "tasks", taskId);
     await setDoc(taskRef, {
       name: name,
       description: description,
@@ -47,14 +48,9 @@ export default function EditTask ({ navigation, route }){
         placeholder="Conteúdo da Tarefa"
         multiline
       />
-      <Button
-      mode="contained" 
-      onPress={handleSave} 
-      buttonColor="#8A02F2"
-      textColor="#fff"
-      > Salvar </Button>
+      <Button mode="contained" onPress={handleSave} color="#8A02F2">
+        Salvar
+      </Button>
     </View>
   );
-};
-
-// export default EditTask;
+}
