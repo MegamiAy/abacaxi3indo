@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 import { db } from "../config/firebase";
-import { collection, getDocs, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import Header from "./Header";
 import { Styles } from "../utils/Styles";
 
@@ -29,7 +29,7 @@ export default function TaskP({ navigation }) {
 
   const deleteTask = async (taskId) => {
     try {
-      await deleteDoc(collection(db, "tasks", taskId));
+      await deleteDoc(doc(db, "tasks", taskId));
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     } catch (error) {
       console.log("Error deleting task:", error);
@@ -46,10 +46,10 @@ export default function TaskP({ navigation }) {
       {tasks.map((task) => (
         <View key={task.id} style={Styles.container}>
           <View style={Styles.taskheader}>
-            <Text style={Styles.titlesmall}>Título: {task.name}</Text>
+            <Text style={Styles.titlesmall}>{task.name}</Text>
           </View>
           <View style={Styles.taskbody}>
-            <Text>Descrição: {task.description}</Text>
+            <Text>{task.description}</Text>
           </View>
           <TouchableOpacity onPress={() => navigateToEditTask(task.id)} style={Styles.del}>
             <Text>Editar</Text>

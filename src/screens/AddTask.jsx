@@ -7,12 +7,15 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { Styles } from "../utils/Styles";
 import Header from "../components/Header";
 
-export default function AddTask() {
+export default function AddTask({navigation}) {
     const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
 
     const handleAddTask = async () => {
-        try {
+        if (!taskName || !taskDescription) {
+            alert("Por favor, insira um nome e uma descrição para a tarefa.");
+            return;
+        } try {
             const taskRef = await addDoc(collection(db, "tasks"), {
                 name: taskName,
                 description: taskDescription,
@@ -20,6 +23,7 @@ export default function AddTask() {
             console.log("Task added with ID:", taskRef.id);
             setTaskName("");
             setTaskDescription("");
+            navigation.navigate("Task")
         } catch (error) {
             console.error("Error adding task:", error);
         }
@@ -41,6 +45,7 @@ export default function AddTask() {
                 value={taskDescription}
                 onChangeText={text => setTaskDescription(text)}
                 style={Styles.textinput}
+                multiline
             />
             <Button
                 icon={() => <Icon name="plus" size={15} color="#fff" />}

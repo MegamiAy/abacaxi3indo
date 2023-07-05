@@ -54,7 +54,6 @@ export const Styles = StyleSheet.create({
       backgroundColor: "#111417",
       height: "30%",
       width: "100%",
-      maxHeight: 50,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
       shadowOffset: { width: 5, height: 5 },
@@ -68,7 +67,6 @@ export const Styles = StyleSheet.create({
       backgroundColor: "#889199",
       height: "50%",
       width: "100%",
-      maxHeight: 50,
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,
       padding: 10,
@@ -104,6 +102,15 @@ export const Styles = StyleSheet.create({
       justifyContent: "center",
       alignSelf: "center",
       marginTop: 10,
+    },
+
+    text: {
+      color: "#e3e3e3",
+      fontSize: 10,
+    },
+
+    textDiv: {
+      padding: 10,
     }
 
   });
