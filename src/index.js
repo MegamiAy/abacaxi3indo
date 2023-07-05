@@ -3,10 +3,9 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import Home from "./screens/Home";
 import AddTask from "./screens/AddTask";
-import EditTask from "./screens/EditTask";
 import Task from "./components/Task";
-
-
+import EditTask from "./screens/EditTask";
+import TaskP from "./components/Task";
 
 const Stack = createMaterialBottomTabNavigator();
 
@@ -26,6 +25,15 @@ export default function RootNavigation() {
                         <MaterialCommunityIcons name="home" color={color} size={26} />
                     ),
                 }} />
+
+                <Stack.Screen 
+                name="Tarefas" 
+                component={TaskP} 
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="view-list" color={color} size={26} />
+                    ),
+                }} />
                 <Stack.Screen 
                 name="Adição" 
                 component={AddTask} 
@@ -35,7 +43,7 @@ export default function RootNavigation() {
                     ),
                 }}/>
                 <Stack.Screen 
-                name="Edição" 
+                name="EditTask" 
                 component={EditTask} 
                 options={{
                     tabBarIcon: ({ color }) => (

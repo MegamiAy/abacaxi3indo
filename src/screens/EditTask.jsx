@@ -4,7 +4,7 @@ import { Button,} from "react-native-paper"
 import { db } from "../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
-const EditTask = ({ navigation, route }) => {
+export default function EditTask ({ navigation, route }){
   const { taskId } = route.params;
   const [name, setName] = useState("");
   const [description, setDesc] = useState("");
@@ -12,7 +12,7 @@ const EditTask = ({ navigation, route }) => {
   useEffect(() => {
     const fetchTask = async () => {
       const taskRef = doc(db, "tasks", taskId);
-      const taskSnapshot = await taskRef.get();
+      const taskSnapshot = await taskRef.get;
 
       if (taskSnapshot.exists()) {
         const taskData = taskSnapshot.data();
@@ -31,6 +31,7 @@ const EditTask = ({ navigation, route }) => {
       name: name,
       description: description,
     });
+    navigation.goBack();
   };
 
   return (
@@ -56,4 +57,4 @@ const EditTask = ({ navigation, route }) => {
   );
 };
 
-export default EditTask;
+// export default EditTask;
